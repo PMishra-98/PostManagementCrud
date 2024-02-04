@@ -1,38 +1,34 @@
 <template>
-  <!-- App.vue -->
+  <HeaderComponent />
 
-  <v-app>
+  <!-- <FooterComponent /> -->
 
-
-    <v-app-bar>
-
-      <v-avatar color="teal" rounded size="56" tile >
-        <v-icon dark>
-          mdi-account-circle
-        </v-icon><br/>
-        ADD
-      </v-avatar>
-    </v-app-bar>
-
-    <!-- Sizes your content based upon application components -->
-    <v-main>
-
-      <!-- Provides the application the proper gutter -->
-      <v-container>
-
-        <!-- If using vue-router -->
-        <router-view></router-view>
-      </v-container>
-    </v-main>
-
-    <v-footer>
-      @Pallawi
-    </v-footer>
-  </v-app>
+  <router-view />
 </template>
 
-<script script>
+<script>
+import HeaderComponent from './components/HeaderComponent.vue';
+import FooterComponent from './components/FooterComponent.vue';
+import { onMounted, ref } from 'vue';
+import { useStore } from 'vuex';
+export default {
+  name: 'App',
+  components: {
+    HeaderComponent,
+    FooterComponent,
+  },
+  setup() {
+    const store = useStore();
 
-
-
+    onMounted(() => {
+      store.dispatch('getAllData');
+    });
+  },
+};
 </script>
+
+<style>
+body {
+  background-color: #0072a8;
+}
+</style>
